@@ -1,0 +1,23 @@
+version: '3.5'
+services:
+  ikev2-server:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      - CERT_CN=ikev2.ripe.one
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "10"
+    ports:
+      - 500:500/udp
+      - 4500:4500/udp
+    privileged: true
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - /etc/letsencrypt/live:/etc/ipsec.d/cacerts/
+      - /etc/letsencrypt/live:/etc/ipsec.d/private/
+      - /lib/modules:/lib/modules:ro
