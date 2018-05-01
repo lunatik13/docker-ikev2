@@ -93,7 +93,6 @@ VPN_PASSWORD=${VPN_PASSWORD:-$(openssl rand -hex 4 2>/dev/null)}
 $LEFT_ID : RSA "/etc/ipsec.d/private/privkey.pem"
 $VPN_USER : EAP "$VPN_PASSWORD"
 EOF
-fi
 
 # hotfix for https://github.com/gaomd/docker-ikev2-vpn-server/issues/7
 # rm -f /var/run/starter.charon.pid
