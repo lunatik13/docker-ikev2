@@ -4,8 +4,6 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-    environment:
-      - CERT_CN=ikev2.ripe.one
     logging:
       driver: "json-file"
       options:
@@ -16,7 +14,6 @@ services:
       - 4500:4500/udp
     privileged: true
     restart: unless-stopped
-    tty: true
     volumes:
       - /etc/letsencrypt/live:/etc/ipsec.d/cacerts/
       - /etc/letsencrypt/live:/etc/ipsec.d/private/
