@@ -44,9 +44,9 @@ netfilter-persistent reload
 # SHARED_SECRET=${SHARED_SECRET:-$(openssl rand -base64 32 2>/dev/null)}
 # [ -f /etc/ipsec.secrets ] || echo ": PSK \"${SHARED_SECRET}\"" > /etc/ipsec.secrets
 
-LEFT_ID=${LEFT_ID:-host.example.com}
-DNS_1=${DNS_1:-1.1.1.1}
-DNS_2=${DNS_2:-1.0.0.1}
+LEFT_ID=${ENV_LEFT_ID:-host.example.com}
+DNS_1=${ENV_DNS_1:-1.1.1.1}
+DNS_2=${ENV_DNS_2:-1.0.0.1}
 
 cat >> /etc/ipsec.conf <<EOF
 config setup
@@ -87,7 +87,7 @@ conn ikev2-mschapv2-apple
     leftid=@$LEFT_ID
 EOF
 
-VPN_USER=${VPN_USER:-vpnuser}
+VPN_USER=${ENV_VPN_USER:-vpnuser}
 VPN_PASSWORD=${VPN_PASSWORD:-$(openssl rand -hex 4 2>/dev/null)}
 	cat >> /etc/ipsec.secrets <<EOF
 $LEFT_ID : RSA "/etc/ipsec.d/private/privkey.pem"

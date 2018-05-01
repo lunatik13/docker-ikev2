@@ -2,13 +2,23 @@ FROM ubuntu:16.04
 
 RUN set -ex \
     && apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get -y install strongswan strongswan-plugin-eap-mschapv2 strongswan-plugin-openssl moreutils iptables-persistent \
+    && DEBIAN_FRONTEND=noninteractive apt-get -y install openssl strongswan strongswan-plugin-eap-mschapv2 strongswan-plugin-openssl moreutils iptables-persistent \
     && rm -rf /var/lib/apt/lists/* # cache busted 20160406.1
 
 RUN rm /etc/ipsec.secrets
 
 ADD ./etc/* /etc/
 ADD ./bin/* /usr/bin/
+
+ARG LEFT_ID
+ARG VPN_USER
+ARG DNS_1
+ARG DNS_2
+
+ENV ENV_LEFT_ID ${LEFT_ID:-example.host.com}
+ENV ENV_VPN_USER ${VPN_USER:-vpnuser}
+ENV ENV_DNS_1 ${DNS_1:-1.1.1.1}
+ENV ENV_DNS_2 ${DNS_2:-1.0.0.1}
 
 # ROUTES SET UP
 # RUN ufw disable

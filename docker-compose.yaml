@@ -2,6 +2,9 @@ version: '3.5'
 services:
   ikev2-server:
     build:
+      args:
+        LEFT_ID: ${ARG_LEFT_ID}
+        VPN_USER: ${ARG_VPN_USER}
       context: ./
       dockerfile: Dockerfile
     logging:
