@@ -95,7 +95,7 @@ $VPN_USER : EAP "$VPN_PASSWORD"
 EOF
 
 # hotfix for https://github.com/gaomd/docker-ikev2-vpn-server/issues/7
-# rm -f /var/run/starter.charon.pid
+rm -f /var/run/starter.charon.pid
 
 # http://wiki.loopop.net/doku.php?id=server:vpn:strongswanonopenvz
-ipsec reload
+/usr/sbin/ipsec start --nofork
