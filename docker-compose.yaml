@@ -20,5 +20,6 @@ services:
     volumes:
       - /etc/letsencrypt/live/open.ripe.one:/etc/ipsec.d/cacerts/
       - /etc/letsencrypt/live/open.ripe.one:/etc/ipsec.d/private/
+      - /etc/letsencrypt/archive:/etc/archive/
       - /lib/modules:/lib/modules:ro
       - /sbin/modprobe:/sbin/modprobe
