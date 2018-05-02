@@ -21,3 +21,4 @@ services:
       - /etc/letsencrypt/live/open.ripe.one:/etc/ipsec.d/cacerts/
       - /etc/letsencrypt/live/open.ripe.one:/etc/ipsec.d/private/
       - /lib/modules:/lib/modules:ro
+      - /sbin/modprobe:/sbin/modprobe
