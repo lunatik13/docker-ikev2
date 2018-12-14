@@ -28,10 +28,10 @@ sysctl net.ipv4.ip_forward=1
 sysctl net.ipv6.conf.all.forwarding=1
 sysctl net.ipv6.conf.eth0.proxy_ndp=1
 
-iptables -A FORWARD --match policy --pol ipsec --dir in  --proto esp -s 10.10.10.0/24 -j ACCEPT
-iptables -A FORWARD --match policy --pol ipsec --dir out --proto esp -d 10.10.10.0/24 -j ACCEPT
-iptables -t nat -A POSTROUTING -s 10.10.10.0/24 -o eth0 -m policy --pol ipsec --dir out -j ACCEPT
-iptables -t nat -A POSTROUTING -s 10.10.10.0/24 -o eth0 -j MASQUERADE
+iptables -A FORWARD --match policy --pol ipsec --dir in  --proto esp -s 10.20.30.0/24 -j ACCEPT
+iptables -A FORWARD --match policy --pol ipsec --dir out --proto esp -d 10.20.30.0/24 -j ACCEPT
+iptables -t nat -A POSTROUTING -s 10.20.30.0/24 -o eth0 -m policy --pol ipsec --dir out -j ACCEPT
+iptables -t nat -A POSTROUTING -s 10.20.30.0/24 -o eth0 -j MASQUERADE
 
 # netfilter-persistent save
 # netfilter-persistent reload
@@ -73,7 +73,7 @@ conn ikev2-vpn
     rightid=%any
     rightauth=eap-mschapv2
     rightdns=$DNS_1,$DNS_2
-    rightsourceip=10.10.10.0/24
+    rightsourceip=10.20.30.0/24
     rightsendcert=never
     eap_identity=%identity
 
